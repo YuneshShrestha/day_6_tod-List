@@ -32,7 +32,11 @@ class _TodoCardState extends State<TodoCard> {
   Widget build(BuildContext context) {
     return ListTile(
       tileColor: cardColour,
-      title: Text(widget.title),
+      title: Text(
+        widget.title,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
       subtitle: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

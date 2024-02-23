@@ -16,28 +16,30 @@ class AddScreen extends StatelessWidget {
         key: key,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              TextFormField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter Title",
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please Enter Value';
-                  }
-                },
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (key.currentState!.validate()) {
-                      Navigator.of(context).pop(controller.value.text);
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter Title",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please Enter Value';
                     }
                   },
-                  child: const Text("Save"))
-            ],
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      if (key.currentState!.validate()) {
+                        Navigator.of(context).pop(controller.value.text);
+                      }
+                    },
+                    child: const Text("Save"))
+              ],
+            ),
           ),
         ),
       ),

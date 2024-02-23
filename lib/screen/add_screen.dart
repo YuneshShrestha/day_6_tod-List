@@ -10,35 +10,44 @@ class AddScreen extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Todo"),
+        title: Text(
+          "Add Todo",
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
-      body: Form(
-        key: key,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              TextFormField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter Title",
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Form(
+              key: key,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Enter Title",
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter Value';
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please Enter Value';
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  if (key.currentState!.validate()) {
+                    Navigator.of(context).pop(controller.value.text);
                   }
                 },
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (key.currentState!.validate()) {
-                      Navigator.of(context).pop(controller.value.text);
-                    }
-                  },
-                  child: const Text("Save"))
-            ],
-          ),
+                child: const Text("Save"))
+          ],
         ),
       ),
     );

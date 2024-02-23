@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TodoCard extends StatefulWidget {
@@ -32,11 +33,15 @@ class _TodoCardState extends State<TodoCard> {
   Widget build(BuildContext context) {
     return ListTile(
       tileColor: cardColour,
-      title: Text(widget.title),
+      title: Text(
+        widget.title,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
       subtitle: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Description"),
+          FittedBox(child: Text("Description")),
           Wrap(
             spacing: 4.0,
             runSpacing: -2.0,
